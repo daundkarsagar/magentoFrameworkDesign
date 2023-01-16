@@ -24,5 +24,6 @@ public class CreateAccount extends BaseTest {
 		signUpPage.signUp();
 		
 		assertMsg(signUpPage.getAccountCreatedMsg(),"Account already created");
+		
 	}
 }
