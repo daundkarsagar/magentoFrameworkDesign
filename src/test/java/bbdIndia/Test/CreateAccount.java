@@ -1,6 +1,5 @@
 
 package bbdIndia.Test;
-
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
@@ -22,8 +21,6 @@ public class CreateAccount extends BaseTest {
 
 		SignUpPage signUpPage = new SignUpPage(driver);
 		signUpPage.signUp();
-		
-		assertMsg(signUpPage.getAccountCreatedMsg(),"Account already created");
-		
+		assertMsg(signUpPage.getAccountCreatedMsg(), "Account already created");
 	}
 }

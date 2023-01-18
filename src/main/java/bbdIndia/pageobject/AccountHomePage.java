@@ -28,7 +28,7 @@ public class AccountHomePage extends CommonUtility {
 	@FindBy(linkText = "Sign Out")
 	WebElement signOut;
 
-	@FindBy(xpath = "(//li//span[@Class='logged-in'])[1]")
+	@FindBy(css = ".logged-in")
 	WebElement loginSuccessMsg;
 
 	@FindBy(linkText = "What's New")

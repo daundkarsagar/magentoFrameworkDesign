@@ -35,14 +35,12 @@ public class SignInPage extends CommonUtility {
 		signInButton.click();
 	}
 
-	public void signIn() {
+	public void signIn() throws InterruptedException {
 		LandingPage landingPage = new LandingPage(driver);
 		landingPage.signIn();
 		username.sendKeys("daundkarsagar@outlook.com");
 		password.sendKeys("Sagar@12345");
 		signInButton.click();
-		
-
+		Thread.sleep(2000);
 	}
-
 };

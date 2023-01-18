@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.Date;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
@@ -13,6 +14,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -27,29 +29,29 @@ public class BaseTest {
 	public LandingPage landingPage;
 	public static String fileWithPath = System.getProperty("user.dir") + "\\screenShot";
 
-	@SuppressWarnings("deprecation")
 	public WebDriver initializeDriver() throws IOException {
 
 		Properties prop = new Properties();
 		FileInputStream fis = new FileInputStream(
-				System.getProperty("user.dir") + "\\src\\main\\java\\bbdIndia\\" + "resources\\GlobalData.properties");
+		System.getProperty("user.dir") + "\\src\\main\\java\\bbdIndia\\" + "resources\\GlobalData.properties");
 		prop.load(fis);
 		String browserName = prop.getProperty("browser");
 
 		if (browserName.equalsIgnoreCase("chrome")) {
 			WebDriverManager.chromedriver().setup();
 			driver = new ChromeDriver();
-		} else if (browserName.equalsIgnoreCase("firefox")) {
-			// firefox
+		} 
+		else if (browserName.equalsIgnoreCase("firefox")) {
+			
 			WebDriverManager.firefoxdriver().setup();
-			driver = new ChromeDriver();
+			driver = new FirefoxDriver();
 		} else if (browserName.equalsIgnoreCase("edge")) {
 			// edge
 			WebDriverManager.edgedriver().setup();
 			driver = new ChromeDriver();
 		}
 		driver.manage().deleteAllCookies();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 		driver.manage().window().maximize();
 		return driver;
 	}
@@ -58,7 +60,6 @@ public class BaseTest {
 		takeSnapShot(driver);
 		SoftAssert softAssert = new SoftAssert();
 		softAssert.assertEquals(ActualMsg, ExpectedMsg);
-
 	}
 
 	public static void takeSnapShot(WebDriver webdriver) throws IOException {
@@ -81,5 +82,4 @@ public class BaseTest {
 	public void tearDown() {
 		driver.close();
 	}
-
 }

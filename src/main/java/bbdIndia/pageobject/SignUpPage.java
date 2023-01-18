@@ -35,8 +35,8 @@ public class SignUpPage extends CommonUtility {
 
 	@FindBy(xpath = "(//button[@type='submit']/span)[2]")
 	WebElement createAccButton;
-	//System.out.println(driver.findElement(By.xpath("(//div[@class='messages'])[1]")).getText());
-	@FindBy(xpath="(//div[@class='messages'])[1]")
+	
+	@FindBy(xpath="(//div[@class='messages'])[1]/div/div")
 	WebElement accountCreatedMsg;
 
 	public void signUp() {
