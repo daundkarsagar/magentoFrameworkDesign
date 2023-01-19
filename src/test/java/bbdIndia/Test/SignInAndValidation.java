@@ -23,9 +23,9 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class SignInAndValidation extends BaseTest {
 
-	@DataProvider(name = "Login")
+	@DataProvider(name = "InvalidLoginCredentials")
 	public Object[][] log() {
-		return new Object[][] { { "sagardaundkar@outlook.com", "Sagar@1234" }, { "sagardaundkar", "Sagar@12345" },
+		return new Object[][] { { "sagardaundkar@outlook.com", "Sagar@1234" }, { "sagardaundkar@mail.com", "Sagar@12345" },
 				{ "daundkarsagar@outlook.com", "Sagar@123" }, { "daundkarsagar2@outlook.com", "Sagar@12345" } };
 	}
 
@@ -37,14 +37,13 @@ public class SignInAndValidation extends BaseTest {
 		signInPage.signInDetail("daundkarsagar@outlook.com", "Sagar@12345");
 		Thread.sleep(3000);
 		AccountHomePage accountHomePage = new AccountHomePage(driver);
-		Assert.assertEquals("Welcome, Sagar Daundkar!", accountHomePage.getLoginSuccessMsg());
+		assertMsg("Welcome, Sagar Daundkar!", accountHomePage.getLoginSuccessMsg());
 		accountHomePage.signOut();
 		landingPage.waitForElements();
 		assertMsg(landingPage.getLogoutSuccessMsg(),"You are signed out");
 	}
-
 	
-	@Test(dataProvider = "Login")
+	@Test(dataProvider = "InvalidLoginCredentials",enabled=true)
 	public void logincheck(String username, String password) throws InterruptedException, IOException {
 		landingPage.signIn();
 		SignInPage signInPage = new SignInPage(driver);

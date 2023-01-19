@@ -1,6 +1,7 @@
 
 package bbdIndia.Test;
 
+import java.io.IOException;
 import java.time.Duration;
 import java.util.Iterator;
 import java.util.Set;
@@ -34,7 +35,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 public class PurchaseProducts extends BaseTest {
 
 	@Test
-	public void purchaseProduct() throws InterruptedException {
+	public void purchaseProduct() throws InterruptedException, IOException {
 		SignInPage signInPage = new SignInPage(driver);
 		signInPage.signIn();
 
@@ -71,7 +72,7 @@ public class PurchaseProducts extends BaseTest {
 		mens.select34GreenPant();
 
 		addToCart.addcart();
-		Assert.assertEquals(mens.select34GreenPantAddedMsg(), "You added Mithra Warmup Pant to your shopping cart.");
+		assertMsg(mens.select34GreenPantAddedMsg(), "You added Mithra Warmup Pant to your shopping cart.");
 
 		accountHomePage.cartIcon();
 
@@ -86,13 +87,13 @@ public class PurchaseProducts extends BaseTest {
 		Thread.sleep(5000);
 		shippingAddPage.fillAddress();
 
-		Assert.assertEquals(shippingAddPage.noOfItems(), "4");
+		assertMsg(shippingAddPage.noOfItems(), "4");
 		shippingAddPage.placeOrderClick();
 
 		PurchaseConformPage purchaseConformPage = new PurchaseConformPage(driver);
 		purchaseConformPage.waitForElements();
 
-		Assert.assertEquals(purchaseConformPage.orderPlaceMsg(), "Thank you for your purchase!");
+		assertMsg(purchaseConformPage.orderPlaceMsg(), "Thank you for your purchase!");
 
 	}
 }
