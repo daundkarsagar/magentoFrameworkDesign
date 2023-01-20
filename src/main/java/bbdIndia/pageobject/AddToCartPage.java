@@ -22,9 +22,15 @@ public class AddToCartPage extends CommonUtility {
 	@FindBy(id = "product-addtocart-button")
 	WebElement addToCartTab;
 
+	@FindBy(xpath = "//div[@class='messages']//div//div")
+	WebElement msg;
+
 	public void addcart() throws InterruptedException {
 		addToCartTab.click();
-		Thread.sleep(3000);
+		// Thread.sleep(3000);
 	}
 
+	public void msgvisible() {
+		waitForElementToAppear(msg);
+	}
 }

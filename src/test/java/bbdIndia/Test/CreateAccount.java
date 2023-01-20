@@ -22,6 +22,7 @@ public class CreateAccount extends BaseTest {
 
 		SignUpPage signUpPage = new SignUpPage(driver);
 		signUpPage.signUp();
+		landingPage.waitForElements();;
 		assertMsg(signUpPage.getAccountCreatedMsg(), "Account already created");
 	}
 }

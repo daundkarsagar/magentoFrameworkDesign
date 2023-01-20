@@ -3,10 +3,7 @@
 <suite name="Suite">
   <test thread-count="5" name="Test">
     <classes>
-      <class name="bbdIndia.TestComponents.BaseTest"/>
       <class name="bbdIndia.Test.PurchaseProducts"/>
-      <class name="bbdIndia.Test.CreateAccount"/>
-      <class name="bbdIndia.Test.SignInAndValidation"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

@@ -72,7 +72,9 @@ public class PurchaseProducts extends BaseTest {
 		mens.select34GreenPant();
 
 		addToCart.addcart();
-		assertMsg(mens.select34GreenPantAddedMsg(), "You added Mithra Warmup Pant to your shopping cart.");
+		addToCart.msgvisible();
+		assertMsg(mens.select34GreenPantAddedMsg(),
+				"You added Mithra Warmup Pant to your shopping cart.");
 
 		accountHomePage.cartIcon();
 

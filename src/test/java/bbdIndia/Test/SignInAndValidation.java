@@ -43,7 +43,7 @@ public class SignInAndValidation extends BaseTest {
 		assertMsg(landingPage.getLogoutSuccessMsg(),"You are signed out");
 	}
 	
-	@Test(dataProvider = "InvalidLoginCredentials",enabled=true)
+	@Test(dataProvider = "InvalidLoginCredentials")
 	public void logincheck(String username, String password) throws InterruptedException, IOException {
 		landingPage.signIn();
 		SignInPage signInPage = new SignInPage(driver);

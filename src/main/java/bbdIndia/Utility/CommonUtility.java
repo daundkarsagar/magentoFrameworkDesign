@@ -41,7 +41,7 @@ public class CommonUtility {
 		String childId = it.next();
 		driver.switchTo().window(childId);
 	}
-	
+
 	public void switchToParent() {
 		Set<String> windows = driver.getWindowHandles();
 		Iterator<String> it = windows.iterator();

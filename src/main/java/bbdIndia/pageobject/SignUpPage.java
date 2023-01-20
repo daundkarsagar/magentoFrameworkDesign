@@ -1,4 +1,5 @@
 package bbdIndia.pageobject;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -35,8 +36,8 @@ public class SignUpPage extends CommonUtility {
 
 	@FindBy(xpath = "(//button[@type='submit']/span)[2]")
 	WebElement createAccButton;
-	
-	@FindBy(xpath="(//div[@class='messages'])[1]/div/div")
+
+	@FindBy(xpath = "(//div[@class='messages'])[1]/div/div")
 	WebElement accountCreatedMsg;
 
 	public void signUp() {
@@ -47,10 +48,13 @@ public class SignUpPage extends CommonUtility {
 		conformPassword.sendKeys("Sagar@12345");
 		createAccButton.click();
 	}
-	
-	public String getAccountCreatedMsg()
-	{
+
+	public String getAccountCreatedMsg() {
 		return accountCreatedMsg.getText();
+	}
+
+	public void waitForElements() {
+		waitForElementToAppear(accountCreatedMsg);
 	}
 
 }
