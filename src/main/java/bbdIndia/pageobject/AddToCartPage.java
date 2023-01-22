@@ -27,7 +27,7 @@ public class AddToCartPage extends CommonUtility {
 
 	public void addcart() throws InterruptedException {
 		addToCartTab.click();
-		// Thread.sleep(3000);
+		Thread.sleep(5000);
 	}
 
 	public void msgvisible() {

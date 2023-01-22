@@ -1,6 +1,5 @@
 package bbdIndia.pageobject;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -20,19 +19,26 @@ public class WhatsNewPage extends CommonUtility {
 	}
 
 	// pageFactory
-	// driver.findElement(By.linkText("Jackets")).click();
+
 	@FindBy(linkText = "Jackets")
 	WebElement jacketsTab;
 
-	// driver.findElement(By.linkText("Olivia 1/4 Zip Light Jacket")).click();
 	@FindBy(linkText = "Olivia 1/4 Zip Light Jacket")
 	WebElement oliviaZipJacketImg;
-
+	
+	@FindBy(css="div#option-label-size-143-item-167")
+	WebElement sizeS;
+	
+	@FindBy(css="div#option-label-color-93-item-57")
+	WebElement colorPurple;
+	
 	public void jackets() {
 		jacketsTab.click();
 	}
 
-	public void oliviaZipJacket() {
+	public void oliviaZipJacket() {			
 		oliviaZipJacketImg.click();
+		sizeS.click();
+		colorPurple.click();
 	}
 }

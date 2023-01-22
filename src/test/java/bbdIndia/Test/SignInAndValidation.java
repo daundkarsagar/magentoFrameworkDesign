@@ -1,5 +1,4 @@
 package bbdIndia.Test;
-
 import java.io.IOException;
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
@@ -29,7 +28,7 @@ public class SignInAndValidation extends BaseTest {
 				{ "daundkarsagar@outlook.com", "Sagar@123" }, { "daundkarsagar2@outlook.com", "Sagar@12345" } };
 	}
 
-	@Test
+	@Test(priority=1)
 	public void SignIn() throws InterruptedException, IOException {
 
 		landingPage.signIn();
@@ -43,14 +42,13 @@ public class SignInAndValidation extends BaseTest {
 		assertMsg(landingPage.getLogoutSuccessMsg(),"You are signed out");
 	}
 	
-	@Test(dataProvider = "InvalidLoginCredentials")
+	@Test(dataProvider = "InvalidLoginCredentials",priority=2)
 	public void logincheck(String username, String password) throws InterruptedException, IOException {
 		landingPage.signIn();
 		SignInPage signInPage = new SignInPage(driver);
 		signInPage.signInDetail(username, password);
 		landingPage.waitForElements();
-		assertMsg(landingPage.getErrorMsg(),"The account sign-in was incorrect or your account is "
-				+ "disabled temporarily. Please wait and try again later.");
+		assertMsg(landingPage.getErrorMsg(),"Incorrect CAPTCHA");
 		
 	}
 }

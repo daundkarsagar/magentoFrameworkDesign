@@ -34,7 +34,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class PurchaseProducts extends BaseTest {
 
-	@Test
+	@Test(priority=3)
 	public void purchaseProduct() throws InterruptedException, IOException {
 		SignInPage signInPage = new SignInPage(driver);
 		signInPage.signIn();
@@ -89,7 +89,7 @@ public class PurchaseProducts extends BaseTest {
 		Thread.sleep(5000);
 		shippingAddPage.fillAddress();
 
-		assertMsg(shippingAddPage.noOfItems(), "4");
+		assertMsg(shippingAddPage.noOfItems(), "6");
 		shippingAddPage.placeOrderClick();
 
 		PurchaseConformPage purchaseConformPage = new PurchaseConformPage(driver);

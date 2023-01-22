@@ -28,21 +28,21 @@ public class BaseTest {
 	public WebDriver driver;
 	public LandingPage landingPage;
 	public static String fileWithPath = System.getProperty("user.dir") + "\\screenShot";
+	
 
 	public WebDriver initializeDriver() throws IOException {
 
 		Properties prop = new Properties();
 		FileInputStream fis = new FileInputStream(
-		System.getProperty("user.dir") + "\\src\\main\\java\\bbdIndia\\" + "resources\\GlobalData.properties");
+				System.getProperty("user.dir") + "\\src\\main\\java\\bbdIndia\\" + "resources\\GlobalData.properties");
 		prop.load(fis);
 		String browserName = prop.getProperty("browser");
 
 		if (browserName.equalsIgnoreCase("chrome")) {
 			WebDriverManager.chromedriver().setup();
 			driver = new ChromeDriver();
-		} 
-		else if (browserName.equalsIgnoreCase("firefox")) {
-			
+		} else if (browserName.equalsIgnoreCase("firefox")) {
+
 			WebDriverManager.firefoxdriver().setup();
 			driver = new FirefoxDriver();
 		} else if (browserName.equalsIgnoreCase("edge")) {
@@ -60,6 +60,8 @@ public class BaseTest {
 		takeSnapShot(driver);
 		SoftAssert softAssert = new SoftAssert();
 		softAssert.assertEquals(ActualMsg, ExpectedMsg);
+		softAssert.assertAll();
+
 	}
 
 	public static void takeSnapShot(WebDriver webdriver) throws IOException {

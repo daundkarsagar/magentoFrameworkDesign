@@ -1,0 +1,10 @@
+
+<suite name="Suite">
+  <test thread-count="5" name="Test">
+    <classes>
+      <class name="bbdIndia.Test.CreateAccount"/>
+      <class name="bbdIndia.Test.SignInAndValidation"/>
+      <class name="bbdIndia.Test.PurchaseProducts"/>
+    </classes>
+  </test>
+</suite> 
