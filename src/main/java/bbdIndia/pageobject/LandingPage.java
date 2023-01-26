@@ -34,7 +34,7 @@ public class LandingPage extends CommonUtility {
 	@FindBy(xpath = "//div//h1")
 	WebElement logoutSuccessMsg;
 	
-	@FindBy(xpath = "//div[@role='alert']/div/div")
+	@FindBy(css = ".message-error.error.message")
 	WebElement loginFailMsg;
 
 	public void homePageUrl() {

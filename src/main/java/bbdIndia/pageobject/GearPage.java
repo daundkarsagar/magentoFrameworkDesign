@@ -1,6 +1,4 @@
 package bbdIndia.pageobject;
-
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -38,8 +36,9 @@ public class GearPage extends CommonUtility {
 	@FindBy(css = "img[alt='Endurance Watch']")
 	WebElement enduranceWatch;
 
-	public void watches() {
+	public void watches() throws InterruptedException {
 		watchTab.click();
+		Thread.sleep(3000);
 	}
 
 	public void selectMinPrice() {

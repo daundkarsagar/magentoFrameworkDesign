@@ -16,13 +16,13 @@ import bbdIndia.pageobject.SignUpPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class CreateAccount extends BaseTest {
-	@Test(priority = 0)
+	@Test(description ="Account create page validation",priority = 0)
 	public void createAccount() throws IOException {
 		landingPage.createAcclink();
 		SignUpPage signUpPage = new SignUpPage(driver);
 		signUpPage.signUp();
 		landingPage.waitForElements();
-		assertMsg(signUpPage.getAccountCreatedMsg(),
-		"There is already an account with this email address. If you are sure that it is your email address, click here to get your password and access your account.");
+		String Expected = "There is already an account with this email address. If you are sure that it is your email address, click here to get your password and access your account.";
+		assertMsg(signUpPage.getAccountCreatedMsg(), Expected);
 	}
 }

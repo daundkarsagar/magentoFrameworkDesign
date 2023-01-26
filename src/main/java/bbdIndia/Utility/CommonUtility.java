@@ -5,6 +5,7 @@ import java.time.Duration;
 import java.util.Iterator;
 import java.util.Set;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -21,6 +22,11 @@ public class CommonUtility {
 		// initialization
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
+	}
+	
+	public void scrollDown() {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,250)", "");
 	}
 
 	public void dropDownByVisibleText(WebElement WebElement, String text) {

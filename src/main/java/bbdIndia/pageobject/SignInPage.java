@@ -30,6 +30,7 @@ public class SignInPage extends CommonUtility {
 	WebElement signInButton;
 
 	public void signInDetail(String uname, String passwrd) {
+		scrollDown();
 		username.sendKeys(uname);
 		password.sendKeys(passwrd);
 		signInButton.click();

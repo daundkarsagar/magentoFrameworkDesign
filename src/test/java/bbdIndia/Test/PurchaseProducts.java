@@ -34,7 +34,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class PurchaseProducts extends BaseTest {
 
-	@Test(priority=3)
+	@Test(description="purchase product validation",priority = 3)
 	public void purchaseProduct() throws InterruptedException, IOException {
 		SignInPage signInPage = new SignInPage(driver);
 		signInPage.signIn();
@@ -69,18 +69,19 @@ public class PurchaseProducts extends BaseTest {
 		mens.mensAction();
 		mens.bottomsAction();
 		mens.pantAction();
-		mens.select34GreenPant();
+		mens.select34GreenPant();      
 
 		addToCart.addcart();
 		addToCart.msgvisible();
-		assertMsg(mens.select34GreenPantAddedMsg(),
-				"You added Mithra Warmup Pant to your shopping cart.");
+		assertMsg(mens.select34GreenPantAddedMsg(), "You added Mithra Warmup Pant to your shopping cart.");
 
 		accountHomePage.cartIcon();
 
 		ShoppingCartPage shoppingCartPage = new ShoppingCartPage(driver);
 		shoppingCartPage.qntOfProduct();
+		assertMsg(shoppingCartPage.subTotal(), "$239.00");
 		shoppingCartPage.viewEditCart();
+		
 
 		shoppingCartPage.proceedCheckout();
 		ShippingAddressPage shippingAddPage = new ShippingAddressPage(driver);
@@ -96,6 +97,6 @@ public class PurchaseProducts extends BaseTest {
 		purchaseConformPage.waitForElements();
 
 		assertMsg(purchaseConformPage.orderPlaceMsg(), "Thank you for your purchase!");
-
+		Assert.assertTrue(purchaseConformPage.isOrderNumberDisplayed());
 	}
 }

@@ -39,10 +39,18 @@ public class AccountHomePage extends CommonUtility {
 	
 	@FindBy(xpath="//a[@class='action showcart']")
 	WebElement cartIcon;
+	
+	@FindBy(css=".logo img")
+	WebElement logo;
 
 	public void signOut() {
 		signOutArro.click();
 		signOut.click();
+	}
+	
+	public void waitforlogo() throws InterruptedException {
+		waitForElementToAppear(logo);
+		Thread.sleep(3000);
 	}
 
 	public String getLoginSuccessMsg() {

@@ -34,12 +34,21 @@ public class ShoppingCartPage extends CommonUtility {
 	
 	@FindBy (css="button[title='Proceed to Checkout'] span")
 	WebElement proceedCheckout;
+	
+	@FindBy (css="div[class='subtotal'] div span")
+	WebElement subTotal;
 
-	public void qntOfProduct() {
+	public void qntOfProduct() throws InterruptedException {
 		qty.click();
 		qty.sendKeys(Keys.chord(Keys.CONTROL + "a", Keys.BACK_SPACE));
 		qty.sendKeys("4");
 		update.click();
+		Thread.sleep(4000);
+	}
+	
+	public String subTotal()
+	{
+		return subTotal.getText();
 	}
 	
 	public void viewEditCart()

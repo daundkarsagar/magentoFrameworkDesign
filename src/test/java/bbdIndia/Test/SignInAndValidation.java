@@ -1,4 +1,5 @@
 package bbdIndia.Test;
+
 import java.io.IOException;
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
@@ -24,31 +25,31 @@ public class SignInAndValidation extends BaseTest {
 
 	@DataProvider(name = "InvalidLoginCredentials")
 	public Object[][] log() {
-		return new Object[][] { { "sagardaundkar@outlook.com", "Sagar@1234" }, { "sagardaundkar@mail.com", "Sagar@12345" },
-				{ "daundkarsagar@outlook.com", "Sagar@123" }, { "daundkarsagar2@outlook.com", "Sagar@12345" } };
+		return new Object[][] {{ "!@#$$r", "Sa12345" }, { "sagardaundkar@outlook.com", "Sagar@1234" },
+				{ "sagardaundkar@mail.com", "Sagar@12345" }, { "daundkarsagar2@outlook.com", "Sagar@12345" } };
 	}
 
-	@Test(priority=1)
+	@Test(description = "valid credential of login page", priority = 1)
 	public void SignIn() throws InterruptedException, IOException {
 
 		landingPage.signIn();
 		SignInPage signInPage = new SignInPage(driver);
-		signInPage.signInDetail("daundkarsagar@outlook.com", "Sagar@12345");
-		Thread.sleep(3000);
 		AccountHomePage accountHomePage = new AccountHomePage(driver);
-		assertMsg("Welcome, Sagar Daundkar!", accountHomePage.getLoginSuccessMsg());
+		signInPage.signInDetail("daundkarsagar@outlook.com", "Sagar@12345");
+		accountHomePage.waitforlogo();
+		assertMsg(accountHomePage.getLoginSuccessMsg(), "Welcome, Sagar Daundkar!");
 		accountHomePage.signOut();
 		landingPage.waitForElements();
-		assertMsg(landingPage.getLogoutSuccessMsg(),"You are signed out");
+		assertMsg(landingPage.getLogoutSuccessMsg(), "You are signed out");
 	}
-	
-	@Test(dataProvider = "InvalidLoginCredentials",priority=2)
+
+	@Test(dataProvider = "InvalidLoginCredentials", priority = -2)
 	public void logincheck(String username, String password) throws InterruptedException, IOException {
 		landingPage.signIn();
 		SignInPage signInPage = new SignInPage(driver);
 		signInPage.signInDetail(username, password);
 		landingPage.waitForElements();
-		assertMsg(landingPage.getErrorMsg(),"Incorrect CAPTCHA");
-		
+		assertMsg(landingPage.getErrorMsg(), "Incorrect CAPTCHA");
+
 	}
 }

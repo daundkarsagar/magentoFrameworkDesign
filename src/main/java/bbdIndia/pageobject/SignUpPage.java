@@ -1,6 +1,7 @@
 package bbdIndia.pageobject;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -37,7 +38,7 @@ public class SignUpPage extends CommonUtility {
 	@FindBy(xpath = "(//button[@type='submit']/span)[2]")
 	WebElement createAccButton;
 
-	@FindBy(xpath = "(//div[@class='messages'])[1]/div/div")
+	@FindBy(css = "div[class='message-error error message']")
 	WebElement accountCreatedMsg;
 
 	public void signUp() {
