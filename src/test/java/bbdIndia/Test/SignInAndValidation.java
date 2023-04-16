@@ -43,13 +43,14 @@ public class SignInAndValidation extends BaseTest {
 		assertMsg(landingPage.getLogoutSuccessMsg(), "You are signed out");
 	}
 
-	@Test(dataProvider = "InvalidLoginCredentials", priority = -2)
+	@Test(dataProvider = "InvalidLoginCredentials", priority = 2)
 	public void logincheck(String username, String password) throws InterruptedException, IOException {
 		landingPage.signIn();
 		SignInPage signInPage = new SignInPage(driver);
 		signInPage.signInDetail(username, password);
 		landingPage.waitForElements();
-		assertMsg(landingPage.getErrorMsg(), "Incorrect CAPTCHA");
+		String actual="The account sign-in was incorrect or your account is disabled temporarily. Please wait and try again later.";
+		assertMsg(landingPage.getErrorMsg(), actual);
 
 	}
 }

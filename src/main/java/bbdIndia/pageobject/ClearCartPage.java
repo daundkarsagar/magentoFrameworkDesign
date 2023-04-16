@@ -35,6 +35,9 @@ public class ClearCartPage extends CommonUtility {
 	@FindBy(css = "button[title='Update Shopping Cart']")
 	WebElement update_ShopCart_Button;
 
+	@FindBy(css = "strong[class='subtitle empty']")
+	WebElement clear_Cart_Msg;
+
 	public boolean isDisplay() {
 
 		try {
@@ -47,8 +50,9 @@ public class ClearCartPage extends CommonUtility {
 	}
 
 	public void emptyCart() throws InterruptedException {
-		Thread.sleep(4000);
+		Thread.sleep(3000);
 		cartIcon.click();
+
 		viewAndEditCart.click();
 
 		while (isDisplay()) {

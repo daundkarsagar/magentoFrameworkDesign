@@ -79,9 +79,8 @@ public class PurchaseProducts extends BaseTest {
 
 		ShoppingCartPage shoppingCartPage = new ShoppingCartPage(driver);
 		shoppingCartPage.qntOfProduct();
-		assertMsg(shoppingCartPage.subTotal(), "$239.00");
+		assertMsg(shoppingCartPage.subTotal(), "$238.00");
 		shoppingCartPage.viewEditCart();
-		
 
 		shoppingCartPage.proceedCheckout();
 		ShippingAddressPage shippingAddPage = new ShippingAddressPage(driver);

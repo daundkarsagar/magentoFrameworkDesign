@@ -15,6 +15,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -35,19 +36,23 @@ public class BaseTest {
 
 		Properties prop = new Properties();
 		FileInputStream fis = new FileInputStream(
-				System.getProperty("user.dir") + "\\src\\main\\java\\bbdIndia\\" + "resources\\GlobalData.properties");
+		System.getProperty("user.dir") + "\\src\\main\\java\\bbdIndia\\" + "resources\\GlobalData.properties");
 		prop.load(fis);
 		String browserName = prop.getProperty("browser");
 
-		if (browserName.equalsIgnoreCase("chrome")) {
+		if (browserName.equalsIgnoreCase("chrome")) 
+		{
 			WebDriverManager.chromedriver().setup();
-			driver = new ChromeDriver();
-		} else if (browserName.equalsIgnoreCase("firefox")) {
-
+			ChromeOptions option=new ChromeOptions();
+		//	option.setExperimentalOption("excludeSwitches", new String[] {"disable-automation"});
+			option.addArguments("--remote-allow-origins=*");
+			driver = new ChromeDriver(option);
+		} else if (browserName.equalsIgnoreCase("firefox")) 
+		{
 			WebDriverManager.firefoxdriver().setup();
 			driver = new FirefoxDriver();
-		} else if (browserName.equalsIgnoreCase("edge")) {
-			// edge
+		} else if (browserName.equalsIgnoreCase("edge")) 
+		{
 			WebDriverManager.edgedriver().setup();
 			driver = new ChromeDriver();
 		}
@@ -81,7 +86,7 @@ public class BaseTest {
 		return landingPage;
 	}
 
-	//@AfterMethod
+	@AfterMethod
 	public void tearDown() {
 		driver.close();
 	}

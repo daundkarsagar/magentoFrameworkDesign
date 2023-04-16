@@ -38,7 +38,8 @@ public class LandingPage extends CommonUtility {
 	WebElement loginFailMsg;
 
 	public void homePageUrl() {
-		driver.get("https://magento.softwaretestingboard.com/");
+		//driver.get("https://magento.softwaretestingboard.com/");
+		driver.get("https://magento2-demo.magebit.com/");
 	}
 
 	public void createAcclink() {
